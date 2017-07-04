@@ -19,10 +19,9 @@ undirectedGraph.print();
 
 // Start BFS traversal
 // ===================
-function breadthFirstSearch(graph) {
+function breadthFirstSearch(graph, root) {
   // BFS: pick a random vertex as starting point, go through its children
   // push those that are discovered but not fully explored in a stack
-  const root = Object.keys(graph.vertices)[0];
   const verticesToProcess = [root];
 
   // Record the state of each vertice
@@ -74,11 +73,29 @@ function shortestPathFromRoot(vertex, traversalTree) {
   console.log(description);
 }
 
-const traversalTree = breadthFirstSearch(undirectedGraph);
+const root = Object.keys(undirectedGraph.vertices)[0];
+const traversalTree = breadthFirstSearch(undirectedGraph, root);
 shortestPathFromRoot(7, traversalTree);
 
 // Using BFS to count # of connected components
 // ============================================
-function countConnectedComponents() {
-  // Do BFS by picking random nodes, if
+function countConnectedComponents(graph) {
+  // Do BFS by picking random nodes, and checking if there are still nodes left
+  // after the first BFS, repeat until all components are found
+  const vertices = Object.keys(undirectedGraph.vertices);
+  let count = 0;
+  let processed = [];
+
+  for (let i = 0; i < vertices.length; i++) {
+    const vertex = vertices[i];
+    if (processed.indexOf(vertex) === -1) {
+      const tree = breadthFirstSearch(graph, vertex);
+      processed = processed.concat(Object.keys(tree));
+      count++;
+    }
+  }
+  console.log(`Found ${count} connected components`);
+  return count;
 }
+
+countConnectedComponents(undirectedGraph);

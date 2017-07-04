@@ -24,7 +24,12 @@ class UndirectedGraph {
     this.insertEdge(3, 4);
     this.insertEdge(4, 5);
     this.insertEdge(4, 6);
-    this.insertEdge(3, 7);
+    this.insertEdge(6, 7);
+    this.insertEdge(8, 9);
+    this.insertEdge(8, 10);
+    this.insertEdge(8, 11);
+    this.insertEdge(8, 12);
+    this.insertEdge(12, 13);
   }
 
   insertEdge(x, y, directed) {
