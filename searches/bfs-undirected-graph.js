@@ -21,7 +21,7 @@ undirectedGraph.print();
 // ===================
 function breadthFirstSearch(graph, root) {
   // BFS: pick a random vertex as starting point, go through its children
-  // push those that are discovered but not fully explored in a stack
+  // push those that are discovered but not fully explored in a queue
   const verticesToProcess = [root];
 
   // Record the state of each vertice
@@ -33,11 +33,10 @@ function breadthFirstSearch(graph, root) {
 
   let currentVertex;
   while (verticesToProcess.length !== 0) {
-    currentVertex = verticesToProcess.pop();
+    currentVertex = verticesToProcess.shift();
 
-    // mark vertex as processed
+    // mark vertex as discovered
     discovered[currentVertex] = true;
-    processed[currentVertex] = true;
 
     let edges = graph.vertices[currentVertex];
     while (edges !== null) {
@@ -50,6 +49,9 @@ function breadthFirstSearch(graph, root) {
       }
       edges = edges.next;
     }
+
+    // mark as processed when all edges are completed
+    processed[currentVertex] = true;
   }
 
   // return the resultant "tree" of traversal
@@ -75,9 +77,10 @@ function shortestPathFromRoot(vertex, traversalTree) {
 
 const root = Object.keys(undirectedGraph.vertices)[0];
 const traversalTree = breadthFirstSearch(undirectedGraph, root);
-shortestPathFromRoot(7, traversalTree);
+shortestPathFromRoot(17, traversalTree);
 
 // Using BFS to count # of connected components
+// NOTE: should not matter if using BFS or DFS
 // ============================================
 function countConnectedComponents(graph) {
   // Do BFS by picking random nodes, and checking if there are still nodes left
