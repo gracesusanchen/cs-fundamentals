@@ -5,18 +5,6 @@ undirectedGraph.initialize();
 undirectedGraph.print();
 
 
-/* function classifyEdge(vertex, endpoint) {
-  // console.log(`classifying edge between ${vertex} and ${endpoint}`);
-  // Each edge in BFS could either be a TREE edge - pointing forward
-  // Or a BACK edge - pointing backward to an already explored node
-  if (processed[vertex] && !discovered[endpoint]) {
-    return 'TREE';
-  } else if (processed[vertex] && processed[endpoint]) {
-    return 'BACK';
-  }
-  return 'TREE';
-} */
-
 // Start BFS traversal
 // ===================
 function breadthFirstSearch(graph, root) {
