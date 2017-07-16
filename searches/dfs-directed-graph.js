@@ -95,3 +95,6 @@ dfs(directedGraph);
 while (topologicalSort.length > 0) {
   console.log(`Topologically sorted graph: ${topologicalSort.pop()}`);
 }
+
+// Check for strongly connected components
+// =================
