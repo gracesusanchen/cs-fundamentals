@@ -52,3 +52,6 @@ function mergeSort(input) {
 }
 
 console.log(mergeSort(array));
+
+module.exports = mergeSort;
+
